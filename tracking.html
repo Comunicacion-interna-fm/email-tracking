@@ -21,31 +21,15 @@
             var measurementId = 'G-EGT50HQ4HV'; // Measurement ID 
             var apiSecret = 'AS8LGwkHSbSffQ2aXOMlRw'; // API Secret
 
-            // Crear la solicitud de seguimiento usando fetch con no-cors
-            fetch(`https://www.google-analytics.com/mp/collect?measurement_id=${measurementId}&api_secret=${apiSecret}`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    client_id: '123456789', // Puede ser cualquier identificador único del cliente
-                    events: [
-                        {
-                            name: 'email_open',
-                            params: {
-                                email_subject: emailSubject,
-                                email_recipient: emailRecipient,
-                                campaign_name: campaignName
-                            }
-                        }
-                    ]
-                }),
-                mode: 'no-cors' // Importante para evitar el bloqueo de CORB
-            }).then(() => {
-                console.log('Tracking request sent with params: ', emailSubject, emailRecipient, campaignName);
-            }).catch((error) => {
-                console.error('Error in tracking:', error);
-            });
+            // Crear la URL para enviar los datos a Google Analytics
+            var trackingUrl = `https://www.google-analytics.com/mp/collect?measurement_id=${measurementId}&api_secret=${apiSecret}&client_id=123456789&email_subject=${emailSubject}&email_recipient=${emailRecipient}&campaign_name=${campaignName}`;
+
+            // Enviar los datos mediante una imagen (tracking pixel)
+            var trackingImage = new Image();
+            trackingImage.src = trackingUrl;
+
+            // Mostrar en la consola los parámetros que estamos enviando (para debugging)
+            console.log('Tracking sent with params: ', emailSubject, emailRecipient, campaignName);
         };
     </script>
 </head>
