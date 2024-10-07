@@ -7,12 +7,13 @@
     <script>
         window.onload = function() {
             // Parámetros del seguimiento
-            var emailSubject = 'Noticia-Premios';
-            var emailRecipient = 'FraterNet';
-            var campaignName = 'HospitalHabana';
+            var emailSubject = 'Noticia-Premios';  // Cambia esto si es necesario
+            var emailRecipient = 'FraterNet';       // Cambia esto si es necesario
+            var campaignName = 'HospitalHabana';    // Cambia esto si es necesario
 
-            const measurementId = 'G-EGT50HQ4HV'; // Measurement ID
-            const apiSecret = 'AS8LGwkHSbSffQ2aXOMlRw'; // API Secret   
+            // Tu Measurement ID y API Secret
+            var measurementId = 'G-EGT50HQ4HV'; // Measurement ID 
+            var apiSecret = 'AS8LGwkHSbSffQ2aXOMlRw'; // API Secret
 
             // Crear la solicitud de seguimiento usando fetch con no-cors
             fetch(`https://www.google-analytics.com/mp/collect?measurement_id=${measurementId}&api_secret=${apiSecret}`, {
