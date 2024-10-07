@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Tracking</title>
     <script>
+        // Función para obtener los parámetros de la URL
+        function getURLParams(param) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
         window.onload = function() {
-            // Parámetros del seguimiento
-            var emailSubject = 'Noticia-Premios';  // Cambia esto si es necesario
-            var emailRecipient = 'FraterNet';       // Cambia esto si es necesario
-            var campaignName = 'HospitalHabana';    // Cambia esto si es necesario
+            // Captura los parámetros de la URL
+            var emailSubject = getURLParams('email_subject') || 'default_subject';
+            var emailRecipient = getURLParams('email_recipient') || 'default_recipient';
+            var campaignName = getURLParams('campaign_name') || 'default_campaign';
 
             // Tu Measurement ID y API Secret
             var measurementId = 'G-EGT50HQ4HV'; // Measurement ID 
@@ -36,7 +42,7 @@
                 }),
                 mode: 'no-cors' // Importante para evitar el bloqueo de CORB
             }).then(() => {
-                console.log('Tracking request sent');
+                console.log('Tracking request sent with params: ', emailSubject, emailRecipient, campaignName);
             }).catch((error) => {
                 console.error('Error in tracking:', error);
             });
@@ -44,7 +50,7 @@
     </script>
 </head>
 <body>
-    <h1>Tracking Email Open</h1>
-    <p>This page tracks the opening of the email.</p>
+    <h1>Email Tracking</h1>
+    <p>This page tracks the opening of an email using Google Analytics 4.</p>
 </body>
 </html>
