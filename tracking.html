@@ -1,4 +1,53 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento de imagen para consumo de información interna</title>
+</head>
+<body>
+    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="1" height="1" alt="Tracking Pixel">
+    <script>
+
+            const measurementId = 'G-EGT50HQ4HV'; // Measurement ID
+            const apiSecret = 'AS8LGwkHSbSffQ2aXOMlRw'; // API Secret        
+
+        // URL para el Measurement Protocol de Google Analytics
+        const analyticsUrl = `https://www.google-analytics.com/mp/collect?measurement_id=${measurementId}&api_secret=${apiSecret}`;
+
+        // Crear un objeto con el evento que rastreará la apertura del correo
+        const eventData = {
+            client_id: Date.now().toString(), // Generar un ID único de cliente o usar uno personalizado
+            events: [{
+                name: "email_open", // Evento que rastreamos
+                params: {
+                    email_subject: "Boletín Mensual Octubre 2024", // Asunto del correo
+                    email_recipient: "recipient@example.com", // Correo del destinatario (o un ID si es sensible)
+                    campaign_name: "october_newsletter_2024", // Nombre de la campaña o boletín
+                    user_id: "user_12345", // ID único del destinatario (si lo tienes)
+                    open_timestamp: Date.now(), // Marca de tiempo cuando se abre el correo
+                }
+            }]
+        };
+
+        // Enviar los datos del evento a Google Analytics 4 usando Measurement Protocol
+        fetch(analyticsUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(eventData)
+        }).then(response => console.log('Evento registrado', response))
+          .catch(error => console.error('Error en el tracking:', error));
+    </script>
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
